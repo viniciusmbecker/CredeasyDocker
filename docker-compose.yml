@@ -8,7 +8,6 @@ services:
     working_dir: /var/www/html/
     volumes:
       - ./:/var/www/html/
-      - ./php/laravel.ini:/usr/local/etc/php/conf.d/laravel.ini
     networks:
       - app-network
 
@@ -31,10 +30,10 @@ services:
     ports:
       - "3306:3306"
     environment: 
+      - MYSQL_DATABASE=laravel
       - MYSQL_ROOT_PASSWORD=root 
     volumes:
-      - bancodata:/var/lib/mysql/
-      - ./mysql/my.cnf:/etc/mysql/my.cnf  
+      - bancodata:/var/lib/mysql/ 
     networks: 
       - app-network 
 

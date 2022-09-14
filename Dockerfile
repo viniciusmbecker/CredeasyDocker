@@ -25,7 +25,7 @@ RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
  
 # Copy existing application directory contents to the working directory
-COPY . /var/www/html
+  COPY . /var/www/html
  
 # Assign permissions of the working directory to the www-data user
 RUN chown -R www-data:www-data \
