@@ -1,4 +1,4 @@
-version: '3.0'
+version: '3.9'
 services: 
 
   #PHP
@@ -24,23 +24,19 @@ services:
       - app-network
 
   #MySQL
-  banco_dados: 
+  db: 
     image: mysql:latest
-    container_name: banco_dados
+    container_name: db
     ports:
       - "3306:3306"
     environment: 
       - MYSQL_DATABASE=laravel
       - MYSQL_ROOT_PASSWORD=root 
     volumes:
-      - bancodata:/var/lib/mysql/ 
+      - ./.docker/data:/var/lib/mysql/ 
     networks: 
       - app-network 
 
 networks:
   app-network: 
     driver: bridge
-
-volumes:
-  bancodata: 
-    driver: local
