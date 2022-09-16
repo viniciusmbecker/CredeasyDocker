@@ -2,17 +2,51 @@ version: '3.9'
 services: 
 
   #PHP Service
-  laravel: 
+  aplicativo1: 
     build: .
-    container_name: php-apache
+    container_name: aplicativo1
     ports:
-      - "8085:80"
+      - "8081:80"
     volumes:
       - ./:/var/www/html/
     depends_on: 
       - db
     networks:
       - app-network
+
+  aplicativo2: 
+    build: .
+    container_name: aplicativo2
+    ports:
+      - "8082:80"
+    volumes:
+      - ./:/var/www/html/
+    depends_on: 
+      - db
+    networks:
+      - app-network    
+
+  aplicativo3: 
+    build: .
+    container_name: aplicativo3
+    ports:
+      - "8083:80"
+    volumes:
+      - ./:/var/www/html/
+    depends_on: 
+      - db
+    networks:
+      - app-network
+
+  haproxy: 
+    image: haproxy:2.5
+    container_name: haproxy 
+    volumes:
+      - ./.docker/haproxy/:/usr/local/etc/haproxy/
+    ports: 
+      - "8080:80" 
+    networks:
+      - app-network       
 
   #MySQL Service
   db: 
